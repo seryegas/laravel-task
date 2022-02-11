@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\MainController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +19,5 @@ Route::resource('books', BookController::class);
 Route::get('/main_page', function () {
     return view('main_page');
 });
+
+Route::get('/home', [MainController::class, 'index']);
