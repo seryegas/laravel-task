@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +18,10 @@ use App\Http\Controllers\MainController;
 
 Route::resource('books', BookController::class);
 
-Route::get('/main_page', function () {
-    return view('main_page');
-});
-
 Route::get('/home', [MainController::class, 'index']);
+
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin/books_list', 'books');
+    Route::get('/admin/authors_list', 'authors');
+    
+});

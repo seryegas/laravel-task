@@ -16,10 +16,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = DB::table('books')
-            ->join('authors', 'books.author_id', '=', 'authors.id')
-            ->get();
-        return view('main_page', compact('books'));
+
     }
 
     /**
