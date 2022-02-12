@@ -8,12 +8,13 @@
         <tr>
             <th scope="col">Author</th>
             <th scope="col">Books count</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
         @foreach($authors as $author)
             <tr>
-                <td>{{ $author->author_name }}</td>
+                <td><a href="{{ route('authors.show', $author) }}">{{ $author->author_name }}</a></td>
                 <td>{{ $author->books_count }}</td>
             </tr>
         @endforeach

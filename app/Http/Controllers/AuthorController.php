@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuthorController extends Controller
 {
@@ -48,7 +49,11 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        $books = DB::table('books')
+            ->join('authors', 'books.author_id', '=', 'authors.id')
+            ->get()
+            ->where('author_id', $author->id);
+        return view('show_author', compact('books', 'author'));
     }
 
     /**
