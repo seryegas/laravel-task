@@ -2,12 +2,6 @@
 
 @section('title', 'Books with Authors')
 
-@section('content--')
-        @foreach($books as $book)
-            <li class="list-group-item">{{ $book->book_name }}</li>
-        @endforeach
-@endsection
-
 @section('content')
     <table class="table">
         <thead>

@@ -14,7 +14,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        $authors = Author::withCount('books')->get();
+        return view('authors_list', compact('authors'));
     }
 
     /**
@@ -24,7 +25,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('create_author_from');
     }
 
     /**
@@ -35,7 +36,8 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Author::create($request->only(['author_name']));
+        return redirect()->route('authors.index');
     }
 
     /**

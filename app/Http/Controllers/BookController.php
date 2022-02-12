@@ -16,7 +16,7 @@ class BookController extends Controller
      */
     public function index()
     {
-
+        
     }
 
     /**
@@ -37,7 +37,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

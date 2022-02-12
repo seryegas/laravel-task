@@ -19,6 +19,7 @@ class AdminController extends Controller
 
     public function authors()
     {
-
+        $authors = Author::withCount('books')->get();
+        return view('authors_list', compact('authors'));
     }
 }
