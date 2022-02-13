@@ -3,6 +3,7 @@
 @section('title', 'Book: ' . $book->book_name)
 
 @section('content')
+<a type="button" class="btn btn-primary mb-3" href="{{ route('books.index') }}">Back to books</a>
 <div class="card" style="width: 18rem;">
     <div class="card-header">
         {{ $book->book_name }}
@@ -10,7 +11,7 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Id : {{ $book->id }}</li>
       <li class="list-group-item">Book name: {{ $book->book_name }}</li>
-      <li class="list-group-item">Book author: {{ $author[0]->author_name }}</li>
+      <li class="list-group-item">Book author: {{ $author->author_name }}</li>
     </ul>
   </div>
   <a type="button" class="btn btn-secondary mt-3" href="{{ route('books.update', $book) }}">Update</a>

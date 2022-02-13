@@ -17,6 +17,7 @@ class BookController extends Controller
     public function index()
     {
         $books = DB::table('books')
+            ->select(DB::raw('books.id as book_id, authors.id as author_id, books.book_name, authors.author_name'))
             ->join('authors', 'books.author_id', '=', 'authors.id')
             ->get();
         return view('books_list', compact('books'));
@@ -29,10 +30,11 @@ class BookController extends Controller
      */
     public function create(Request $request)
     {
+        
         if (isset($request->author_id))
         {
             $author_id = $request->author_id;
-            $author = (Author::get()->where('id', $author_id))[0];
+            $author = Author::get()->find($author_id);
             return view('create_book_form', compact(['author']));
         }
         else
@@ -49,7 +51,8 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        
+        Book::create($request->only(['book_name', 'author_id']));
+        return redirect()->route('books.index');
     }
 
     /**
@@ -58,10 +61,10 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show($book_id)
     {
-
-        $author = Author::get()->where('id', $book->author_id);
+        $book = Book::get()->find($book_id);
+        $author = Author::get()->find($book->author_id);
         return view('show_book', compact('book', 'author'));
     }
 
@@ -73,7 +76,7 @@ class BookController extends Controller
      */
     public function edit(Author $author)
     {
-        dd($author->author_name);
+        dd($author->author_);
     }
 
     /**
