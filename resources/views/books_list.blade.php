@@ -3,6 +3,8 @@
 @section('title', 'Books with Authors')
 
 @section('content')
+    <a type="button" class="btn btn-primary mb-3" href="{{ route('home') }}">To main page</a>
+    <a type="button" class="btn btn-primary mb-3" href="{{ route('authors.index') }}">To authors page</a>
     <table class="table">
         <thead>
         <tr>

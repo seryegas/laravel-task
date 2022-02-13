@@ -2,13 +2,14 @@
 
 @section('title', 'Authors with books count')
 
-@section('content')
+@section('content') 
+    <a type="button" class="btn btn-primary mb-3" href="{{ route('home') }}">To main page</a>
+    <a type="button" class="btn btn-primary mb-3" href="{{ route('books.index') }}">To books page</a>
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Author</th>
             <th scope="col">Books count</th>
-            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>

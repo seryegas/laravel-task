@@ -16,7 +16,10 @@ class BookController extends Controller
      */
     public function index()
     {
-        
+        $books = DB::table('books')
+            ->join('authors', 'books.author_id', '=', 'authors.id')
+            ->get();
+        return view('books_list', compact('books'));
     }
 
     /**
@@ -24,9 +27,18 @@ class BookController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('create_book_form');
+        if (isset($request->author_id))
+        {
+            $author_id = $request->author_id;
+            $author = (Author::get()->where('id', $author_id))[0];
+            return view('create_book_form', compact(['author']));
+        }
+        else
+        {
+            return view('create_book_form');
+        } 
     }
 
     /**
@@ -48,7 +60,9 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+
+        $author = Author::get()->where('id', $book->author_id);
+        return view('show_book', compact('book', 'author'));
     }
 
     /**
@@ -57,9 +71,9 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
+    public function edit(Author $author)
     {
-        //
+        dd($author->author_name);
     }
 
     /**

@@ -21,9 +21,4 @@ Route::resource('/admin/books', BookController::class);
 Route::resource('/admin/authors', AuthorController::class);
 
 
-Route::get('/home', [MainController::class, 'index']);
-
-Route::controller(AdminController::class)->group(function () {
-    Route::get('/admin/books_list', 'books');
-    Route::get('/admin/authors_list', 'authors');
-});
+Route::get('/home', [MainController::class, 'index'])->name('home');

@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
       <label>Author name</label>
-      <input type="text" class="form-control" name="author_name" placeholder="Author">
+      <input type="text" class="form-control" name="author_name" value="{{ isset($author) ? $author->author_name : null }}">
     </div>
     <button type="submit" class="btn btn-primary mt-3">Create</button>
   </form>
