@@ -62,7 +62,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        dd($author->author_name);
+        return view('update_author_form', compact(['author']));
     }
 
     /**
@@ -74,7 +74,8 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        $author->update($request->only(['author_name']));
+        return redirect()->route('authors.index');
     }
 
     /**
