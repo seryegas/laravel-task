@@ -14,6 +14,10 @@
       <li class="list-group-item">Book author: {{ $author->author_name }}</li>
     </ul>
   </div>
-  <a type="button" class="btn btn-secondary mt-3" href="{{ route('books.update', $book) }}">Update</a>
-  <a type="button" class="btn btn-danger mt-3" href="{{ route('books.destroy', $book) }}">Destroy</a>
+  <a type="button" class="btn btn-secondary mt-3" href="{{ route('books.edit', $book) }}">Update</a>
+  <form method="POST" action="{{ route('books.destroy', $book) }}">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-danger mb-3">Delete book</button>
+</form>
 @endsection

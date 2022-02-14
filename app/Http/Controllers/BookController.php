@@ -39,7 +39,7 @@ class BookController extends Controller
         }
         else
         {
-            return view('create_book_form');
+            return view('home.index');
         } 
     }
 
@@ -74,9 +74,10 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit(Author $author)
+    public function edit(Book $book)
     {
-        dd($author->author_);
+        $author = Author::get()->find($book->author_id);
+        return view('update_book_form', compact(['book', 'author']));
     }
 
     /**
@@ -88,7 +89,15 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        if ($request->get('book_name') == $book->book_name)
+        {
+            return redirect()->route('books.show', $book->id);
+        }
+        else
+        {
+            $book->update($request->only(['book_name']));
+            return redirect()->route('books.show', $book->id);
+        }
     }
 
     /**
@@ -99,6 +108,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect()->route('books.index');
     }
 }

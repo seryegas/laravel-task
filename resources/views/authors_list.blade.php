@@ -5,6 +5,7 @@
 @section('content') 
     <a type="button" class="btn btn-primary mb-3" href="{{ route('home') }}">To main page</a>
     <a type="button" class="btn btn-primary mb-3" href="{{ route('books.index') }}">To books page</a>
+    <a type="button" class="btn btn-success mb-3" href="{{ route('authors.create') }}">Create author</a>
     <table class="table">
         <thead>
         <tr>
