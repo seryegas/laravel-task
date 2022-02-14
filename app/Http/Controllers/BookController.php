@@ -19,6 +19,7 @@ class BookController extends Controller
         $books = DB::table('books')
             ->select(DB::raw('books.id as book_id, authors.id as author_id, books.book_name, authors.author_name'))
             ->join('authors', 'books.author_id', '=', 'authors.id')
+            ->orderBy('book_id', 'asc')
             ->get();
         return view('books_list', compact('books'));
     }

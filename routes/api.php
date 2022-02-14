@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TestApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
+Route::controller(TestApiController::class)->group(function () {
+    Route::get('/v1/books/list', 'index');
+    Route::get('/v1/books/by-{id}', 'show');
+    Route::post('/v1/books/update', 'update');
+    Route::delete('/v1/books/{id}', 'destroy');
+});
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
