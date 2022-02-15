@@ -16,6 +16,9 @@ use App\Http\Controllers\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function (){
+    return redirect()->route('home');
+});
 
 Route::resource('/admin/books', BookController::class);
 Route::resource('/admin/authors', AuthorController::class);

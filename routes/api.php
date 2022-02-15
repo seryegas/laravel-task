@@ -17,9 +17,9 @@ use App\Http\Controllers\TestApiController;
 
 Route::controller(TestApiController::class)->group(function () {
     Route::get('/v1/books/list', 'index');
-    Route::get('/v1/books/by-{id}', 'show');
+    Route::get('/v1/books/by-{id}', 'show')->where('id', '[0-9]+');
     Route::post('/v1/books/update', 'update');
-    Route::delete('/v1/books/{id}', 'destroy');
+    Route::delete('/v1/books/{id}', 'destroy')->where('id', '[0-9]+');
 });
 
 

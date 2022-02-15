@@ -25,10 +25,21 @@ class TestApiController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'book_id' => 'required',
+            'book_name' => 'required|min:3|max:255',
+        ]);
         $book_id = $request->get('book_id');
         $book = Book::get()->find($book_id);
-        $book->update($request->only(['book_name']));
-        return $book->toJson(JSON_PRETTY_PRINT);
+        if (is_null($book))
+        {
+            return 0;
+        }
+        else
+        {
+            $book->update($request->only(['book_name']));
+            return $book;
+        }
     }
 
     public function destroy($id)
